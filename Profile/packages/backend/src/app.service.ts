@@ -4,11 +4,11 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 @Injectable()
 export class AppService {
-  // 1. You MUST define the supabase property here
+  // 1. Declare the property
   private supabase: SupabaseClient;
 
+  // 2. Initialize it in the constructor
   constructor(private configService: ConfigService) {
-    // 2. Initialize the client using ConfigService
     this.supabase = createClient(
       this.configService.get<string>('SUPABASE_URL') || '',
       this.configService.get<string>('SUPABASE_ANON_KEY') || ''
