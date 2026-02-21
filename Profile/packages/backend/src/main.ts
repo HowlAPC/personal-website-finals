@@ -1,8 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
-async function bootstrap() {
+export default async function handler(req: any, res: any) {
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
+  app.setGlobalPrefix('api');
+  app.enableCors();
+  await app.init();
+
+  const instance = app.getHttpAdapter().getInstance();
+  return instance(req, res);
 }
-bootstrap();
