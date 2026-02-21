@@ -9,6 +9,8 @@ import UserBio from './components/Bio.vue'
 import AdminLock from './components/adminlock.vue'
 import ProjectGallery from './components/ProjectGallery.vue'
 import InfoBlock from './components/InfoBlock.vue'
+import DistrictBlock from './components/DistrictBlock.vue'
+import Guestbook from './components/Guestbook.vue'
 
 const app = createApp(App)
 
@@ -18,5 +20,7 @@ app.component('UserBio', UserBio)
 app.component('AdminLock', AdminLock)
 app.component('ProjectGallery', ProjectGallery)
 app.component('InfoBlock', InfoBlock)
+app._component('DistrictBlock', DistrictBlock)
+app._component('Guestbook', Guestbook)
 
 app.mount('#app')

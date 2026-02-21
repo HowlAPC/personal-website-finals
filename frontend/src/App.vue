@@ -1,31 +1,42 @@
 <script setup>
 import { ref } from 'vue'
-import AdminLock from './components/adminlock.vue';
 
-const isExpanded = ref(false)
+const isHovered = ref(false)
+const isPermanentlyOpen = ref(false)
+
+// Logic to keep the drawer out after the password is correct
+const handleUnlock = () => {
+  isPermanentlyOpen.value = true
+}
 </script>
 
 <template>
   <div class="app-container">
     <div 
       class="drawer-wrapper" 
-      :class="{ 'is-open': isExpanded }"
-      @mouseenter="isExpanded = true"
-      @mouseleave="isExpanded = false"
+      :class="{ 'is-open': isHovered || isPermanentlyOpen }"
+      @mouseenter="isHovered = true"
+      @mouseleave="isHovered = false"
     >
       <div class="drawer-handle">
         <span class="handle-icon">⟪</span>
       </div>
 
       <div class="drawer-content">
-        <AdminLock />
+        <AdminLock @unlocked="handleUnlock" />
       </div>
     </div>
 
     <main>
       <UserBio />
-      <info-block />
       <ProjectGallery />
+      <div class="content-row">
+        <InfoBlock /> 
+        <DistrictBlock />
+      </div>
+      
+
+      
     </main>
   </div>
 </template>
@@ -36,24 +47,43 @@ const isExpanded = ref(false)
   padding: 20px;
 }
 
-/* 1. THE DRAWER CONTAINER */
+/* --- GRID SYSTEM --- */
+.content-row {
+  display: grid;
+  /* Creates two equal columns */
+  grid-template-columns: 1fr 1fr; 
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  align-items: stretch;
+}
+
+
+
+/* Stacks blocks vertically on small screens */
+@media (max-width: 1024px) {
+  .content-row {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+}
+
+/* --- DRAWER STYLES --- */
 .drawer-wrapper {
   position: fixed;
   top: 50%;
   right: 0;
-  transform: translateY(-50%) translateX(calc(100% - 30px)); /* Hide most of it */
+  transform: translateY(-50%) translateX(calc(100% - 30px));
   display: flex;
   align-items: center;
   z-index: 10000;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* 2. THE EXPANDED STATE */
 .drawer-wrapper.is-open {
-  transform: translateY(-50%) translateX(0); /* Slide fully into view */
+  transform: translateY(-50%) translateX(0);
 }
 
-/* 3. THE VISIBLE TAB (Handle) */
 .drawer-handle {
   width: 30px;
   height: 60px;
@@ -73,24 +103,25 @@ const isExpanded = ref(false)
 }
 
 .drawer-wrapper.is-open .handle-icon {
-  transform: rotate(180deg); /* Flip the arrow when open */
+  transform: rotate(180deg);
 }
 
-/* 4. THE HIDDEN PANEL */
 .drawer-content {
   background: var(--bg-color);
   border: 1px solid var(--text-color);
   border-right: none;
-  padding: 15px;
-  min-width: 200px;
+  padding: 20px;
+  min-width: 280px; /* Fixed width to prevent jumping */
+  min-height: 120px;
   box-shadow: -5px 0 15px rgba(0,0,0,0.2);
   border-radius: 0 0 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Responsive adjustment */
 @media (max-width: 768px) {
   .drawer-wrapper {
-    /* On mobile, keep it at the top right instead of middle */
     top: 20%;
   }
 }

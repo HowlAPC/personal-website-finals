@@ -1,6 +1,6 @@
 <template>
   <section class="gallery-container">
-    <h2 class="gallery-title">Songs</h2>
+    <h2 class="gallery-title">SONGS</h2>
     <div class="project-grid">
       <div v-for="(project, index) in projects" :key="index" class="project-card">
         <div class="image-wrapper">
@@ -18,40 +18,49 @@
 <script setup>
 import { ref } from 'vue'
 
+/**
+ * Helper function to dynamically resolve image paths from src/assets/images/
+ * Vite requires this 'new URL' syntax for dynamic local assets.
+ */
+const getImageUrl = (name) => {
+  return new URL(`../assets/images/${name}`, import.meta.url).href
+}
+
 const projects = ref([
   {
-    title: 'Cyber Deck',
-    description: 'A custom frontend build.',
-    image: 'https://picsum.photos/seed/tech/400/600'
+    title: 'Guess featuring billie eilish',
+    description: 'Charli XCX & Billie Eilish',
+    image: getImageUrl('bratb.jpg') // Replace with your actual filename
   },
   {
     title: 'Neon Vault',
     description: 'Secure protection interface.',
-    image: 'https://picsum.photos/seed/cyber/400/600'
+    image: getImageUrl('song2.png') // Works with .png, .jpg, .webp, etc.
   },
   {
-    title: 'Bio-Link',
+    header: 'Bio-Link',
     description: 'Minimalist bio component.',
-    image: 'https://picsum.photos/seed/code/400/600'
+    image: getImageUrl('song3.jpg')
   },
   {
     title: 'Data Stream',
     description: 'Real-time analytics feed.',
-    image: 'https://picsum.photos/seed/data/400/600'
+    image: getImageUrl('song4.jpg')
   },
   {
     title: 'Void Shell',
     description: 'Terminal-based UI kit.',
-    image: 'https://picsum.photos/seed/terminal/400/600'
+    image: getImageUrl('song5.jpg')
   }
 ])
 </script>
 
 <style scoped>
+/* Your existing styles remain exactly the same */
 .gallery-container {
   width: 100%;
   padding: 2rem 0;
-  max-width: 1200px; /* Optional: keeps the 5-wide grid from getting too stretched */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -64,10 +73,6 @@ const projects = ref([
 
 .project-grid {
   display: grid;
-  /* Changes: 
-     1. Lowered minmax to 180px so 5 cards can fit side-by-side. 
-     2. Forces 5 columns on desktop while staying responsive.
-  */
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
 }
@@ -78,7 +83,6 @@ const projects = ref([
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* Ensure the card itself is tall */
   display: flex;
   flex-direction: column;
 }
@@ -90,9 +94,6 @@ const projects = ref([
 
 .image-wrapper {
   width: 100%;
-  /* Change: Increased height relative to width. 
-     Using aspect-ratio ensures it stays taller than wide.
-  */
   aspect-ratio: 2 / 3; 
   overflow: hidden;
   border-bottom: 1px solid var(--text-color);
@@ -118,18 +119,17 @@ const projects = ref([
 .card-content h3 {
   margin: 0 0 0.5rem 0;
   color: var(--text-color);
-  font-size: 1rem; /* Smaller font to fit smaller cards */
+  font-size: 1rem;
   text-transform: uppercase;
 }
 
 .card-content p {
-  font-size: 0.8rem; /* Smaller font to fit smaller cards */
+  font-size: 0.8rem;
   line-height: 1.3;
   margin: 0;
   opacity: 0.8;
 }
 
-/* Force 5 columns on larger screens specifically */
 @media (min-width: 1024px) {
   .project-grid {
     grid-template-columns: repeat(5, 1fr);

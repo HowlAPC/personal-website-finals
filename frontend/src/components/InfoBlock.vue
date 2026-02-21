@@ -19,15 +19,15 @@ const title = ref('Interests and Hobbies')
 const sections = ref([
   {
     header: 'Photography',
-    content: 'Whenever.'
+    content: 'Whenever I go out and find a good sight, I preserve the view by taking a photo on my phone.'
   },
   {
-    header: 'DESIGN_SYSTEM',
+    header: 'Traveling | Roaming',
     content: 'The interface utilizes a custom CSS variable architecture, allowing for seamless global theme transitions.'
   },
   {
-    header: 'SECURITY_LAYER',
-    content: 'Admin access is restricted via a custom gateway, featuring multi-phase decoding sequences and UI stabilization.'
+    header: 'Gaming',
+    content: "I don't play as often as I used to, nor do I play as hard as before, but I still enjoy gaming. I enjoy Pokemon, but I mostly play gacha games now"
   }
 ])
 </script>
