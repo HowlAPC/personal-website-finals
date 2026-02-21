@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 @Injectable()
 export class AppService {
   private supabase: SupabaseClient;
 
-  constructor() {
-    // These will come from your Vercel/Local .env file
+  constructor(private configService: ConfigService) {
     this.supabase = createClient(
-      process.env.SUPABASE_URL as string,
-      process.env.SUPABASE_ANON_KEY as string
+      this.configService.get<string>('SUPABASE_URL') || '',
+      this.configService.get<string>('SUPABASE_ANON_KEY') || ''
     );
   }
 
@@ -23,10 +23,13 @@ export class AppService {
     return data;
   }
 
-  async createComment(name: string, content: string) {
+  // ADD THIS EXACT METHOD NAME
+  async addComment(name: string, content: string) {
     const { data, error } = await this.supabase
       .from('guestbook')
-      .insert([{ name, content }]);
+      .insert([{ name, content }])
+      .select()
+      .single();
     
     if (error) throw error;
     return data;
