@@ -2,13 +2,12 @@
   <section class="bio-card">
     <header class="bio-header">
       <h2>About Me</h2>
-      <span class="subtitle">Frontend Developer & Creator</span>
+      <span class="subtitle">Silent and restless</span>
     </header>
     <div class="bio-content">
       <p>
-        Hi! I'm building this site using Vue 3 and Vite, hosted on Vercel. 
-        I'm passionate about clean code, dark mode toggles, and learning 
-        new web technologies in GitHub Codespaces.
+        Hey, I'm Mj Aragon. I'm a 2nd year college student under BSIT studying in
+        Asia Pacific College.
       </p>
     </div>
   </section>
@@ -16,30 +15,28 @@
 
 <style scoped>
 .bio-card {
-  max-width: 600px;
+  
+  width: 90%; 
+  max-width: 1000px; 
+  
   margin: 2rem auto;
-  padding: 1.5rem;
-  border-radius: 12px;
-  /* This uses the variables from your global CSS */
+  padding: 3rem; /* Increased padding for a more professional look */
+  border-radius: 16px;
   background-color: var(--bg-color);
   border: 1px solid var(--text-color);
   transition: all 0.3s ease;
+  
+  /* Adds a subtle shadow to make the "card" pop */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .bio-header h2 {
-  margin-top: 0;
-  color: var(--accent-color, #42b883); /* Falls back to green if accent isn't defined */
-}
-
-.subtitle {
-  font-weight: bold;
-  opacity: 0.8;
-  display: block;
-  margin-bottom: 1rem;
+  font-size: 2.5rem; /* Larger heading */
+  margin-bottom: 0.5rem;
 }
 
 .bio-content p {
-  line-height: 1.6;
-  margin-bottom: 0;
+  font-size: 1.2rem; /* Slightly larger text for readability */
+  line-height: 1.8;
 }
 </style>

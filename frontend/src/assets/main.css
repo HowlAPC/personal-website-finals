@@ -1,58 +1,82 @@
 @import './base.css';
 
-/* 1. MOVE VARIABLES TO THE TOP (Global) */
 :root {
   --bg-color: #ffffff;
   --text-color: #2c3e50;
   --accent-color: #42b883;
 }
 
-:root.dark-theme {
-  --bg-color: #1a1a1a;
-  --text-color: #f3f3f3;
-  --accent-color: #64ffda;
+body.dark-theme {
+  --bg-color: #0d0d0d;
+  --text-color: #9932CC; /* Matrix-style green */
+  --accent-color: #ff003c;
 }
 
-/* 2. APPLY TO BODY GLOBALLY */
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
   margin: 0;
-  min-height: 100vh; /* Ensures background covers full height */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  width: 100%;
+  transition: background-color 0.05s; /* Snappy transition for glitch feel */
+  display: flex;
+  justify-content: center;
 }
 
 #app {
-  max-width: 1280px;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
-  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Links and helper classes */
-a, .green {
-  text-decoration: none;
-  color: var(--accent-color); /* Use your variable here! */
-  transition: 0.4s;
-  padding: 3px;
+/* --- THE GLITCH OVERLAY --- */
+.glitch-overlay {
+  position: relative;
+  overflow: hidden;
+  animation: screen-shift 0.3s steps(3);
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.glitch-overlay::after {
+  content: " ";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  z-index: 9999;
+  animation: flash 0.2s border-box;
 }
 
-/* 3. ONLY LAYOUT CHANGES GO IN MEDIA QUERIES */
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+@keyframes screen-shift {
+  0% { transform: translate(5px, -5px) skew(5deg); clip-path: inset(10% 0 30% 0); }
+  33% { transform: translate(-5px, 5px) skew(-5deg); clip-path: inset(40% 0 10% 0); }
+  66% { transform: translate(2px, 0) skew(0); clip-path: inset(0 0 0 0); }
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+@keyframes flash {
+  from { opacity: 0.8; }
+  to { opacity: 0; }
+}
+
+/* Add this to your main.css */
+
+.global-flicker {
+  animation: vanish-flicker 0.4s steps(2) forwards;
+  pointer-events: none; /* Prevent clicking during the glitch */
+}
+
+@keyframes vanish-flicker {
+  0% { opacity: 0; transform: skewX(20deg); scale: 1.1; }
+  10% { opacity: 1; transform: skewX(-20deg); }
+  20% { opacity: 0; }
+  30% { opacity: 1; transform: scaleY(0.1); }
+  40% { opacity: 0; }
+  50% { opacity: 1; }
+  60% { opacity: 0; }
+  /* Flickers back to normal at the end */
+  100% { opacity: 1; transform: skewX(0); scale: 1; }
 }
