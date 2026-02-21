@@ -1,4 +1,6 @@
 {
+
+    
   "name": "personal-website-root",
   "version": "1.0.0",
   "dependencies": {
@@ -13,4 +15,7 @@
     "@vercel/node": "latest",
     "typescript": "^5.0.0"
   }
+
+  
 }
+
