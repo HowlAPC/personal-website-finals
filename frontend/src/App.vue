@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import Guestbook from './components/Guestbook.vue'
 
 const isHovered = ref(false)
 const isPermanentlyOpen = ref(false)
@@ -33,7 +34,9 @@ const handleUnlock = () => {
       <div class="content-row">
         <InfoBlock /> 
         <DistrictBlock />
+        
       </div>
+      <Guestbook />
       
 
       
