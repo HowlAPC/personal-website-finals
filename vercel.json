@@ -1,14 +1,13 @@
 {
   "version": 2,
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/backend/src/main.ts"
+    { 
+      "source": "/api/(.*)", 
+      "destination": "/packages/backend/src/main.ts" 
     },
-    {
-      "source": "/(.*)",
-      "destination": "/frontend/dist/$1"
+    { 
+      "source": "/(.*)", 
+      "destination": "/packages/frontend/dist/$1" 
     }
   ]
-  
 }
