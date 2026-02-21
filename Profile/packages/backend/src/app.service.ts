@@ -4,9 +4,11 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 @Injectable()
 export class AppService {
+  // 1. You MUST define the supabase property here
   private supabase: SupabaseClient;
 
   constructor(private configService: ConfigService) {
+    // 2. Initialize the client using ConfigService
     this.supabase = createClient(
       this.configService.get<string>('SUPABASE_URL') || '',
       this.configService.get<string>('SUPABASE_ANON_KEY') || ''
@@ -23,7 +25,6 @@ export class AppService {
     return data;
   }
 
-  // ADD THIS EXACT METHOD NAME
   async addComment(name: string, content: string) {
     const { data, error } = await this.supabase
       .from('guestbook')

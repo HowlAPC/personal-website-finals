@@ -7,7 +7,9 @@ import { AppService } from './app.service';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '../../.env', // Points to the root .env
+      // On Vercel, it ignores envFilePath and uses the Dashboard variables.
+      // Locally, it will look for the file you specify.
+      envFilePath: '.env', 
     }),
   ],
   controllers: [AppController],
