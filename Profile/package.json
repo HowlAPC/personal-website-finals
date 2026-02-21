@@ -1,18 +1,23 @@
 {
+    
   "name": "guestbook-monorepo",
+    
   "private": true,
+    
   "workspaces": [
-    "packages/*"
+    
+      
+  "packages/*"
+    
   ],
+    
   "scripts": {
-    "build": "npm run build --workspaces",
-    "install:all": "npm install"
-  },
-  "dependencies": {
-    "@nestjs/config": "^4.0.3",
-    "@nestjs/platform-express": "^11.1.14",
-    "@supabase/supabase-js": "^2.97.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.3"
+    
+      
+  "build": "npm run build --workspaces",
+    
+      
+  "install:all": "npm install"
+    
   }
 }
