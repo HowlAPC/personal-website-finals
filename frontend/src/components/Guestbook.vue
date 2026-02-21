@@ -32,20 +32,30 @@ const loading = ref(false);
 const form = ref({ name: '', message: '' });
 
 const fetchEntries = async () => {
-  const res = await fetch('http://localhost:3000/guestbook');
-  entries.value = await res.json();
+  try {
+    // FIX: Changed from localhost:3000 to relative /api path
+    const res = await fetch('/api/guestbook');
+    if (!res.ok) throw new Error('Network response was not ok');
+    entries.value = await res.json();
+  } catch (e) {
+    console.error("Fetch failed", e);
+  }
 };
 
 const submitEntry = async () => {
   loading.value = true;
   try {
-    await fetch('http://localhost:3000/guestbook', {
+    // FIX: Changed from localhost:3000 to relative /api path
+    const res = await fetch('/api/guestbook', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form.value)
     });
-    form.value = { name: '', message: '' };
-    await fetchEntries();
+    
+    if (res.ok) {
+      form.value = { name: '', message: '' };
+      await fetchEntries();
+    }
   } catch (e) {
     console.error("Transmission failed", e);
   } finally {
