@@ -6,7 +6,7 @@ import { GuestbookModule } from './guestbook/guestbook.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }), // Add this - makes .env available everywhere
+    ConfigModule.forRoot({ isGlobal: true }),
     GuestbookModule,
   ],
   controllers: [AppController],
