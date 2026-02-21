@@ -7,7 +7,12 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/frontend/index.html"
+      "destination": "/frontend/dist/$1"
     }
-  ]
+  ],
+  "functions": {
+    "backend/src/main.ts": {
+      "runtime": "@vercel/node"
+    }
+  }
 }

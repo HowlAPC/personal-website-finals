@@ -6,12 +6,18 @@ import express from 'express';
 const server = express();
 
 export const bootstrap = async (expressInstance) => {
-  const app = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
-  app.enableCors();
+  const app = await NestFactory.create(
+    AppModule, 
+    new ExpressAdapter(expressInstance)
+  );
+  app.enableCors(); // Allows your Vue frontend to talk to this API
   await app.init();
 };
 
-bootstrap(server);
+// Vercel needs to wait for the bootstrap to finish before handling requests
+const handleRequest = async (req: any, res: any) => {
+  await bootstrap(server);
+  return server(req, res);
+};
 
-// This export is what Vercel looks for
-export default server;
+export default handleRequest;
