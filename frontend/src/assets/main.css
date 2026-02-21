@@ -1,5 +1,27 @@
 @import './base.css';
 
+/* 1. MOVE VARIABLES TO THE TOP (Global) */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #2c3e50;
+  --accent-color: #42b883;
+}
+
+:root.dark-theme {
+  --bg-color: #1a1a1a;
+  --text-color: #f3f3f3;
+  --accent-color: #64ffda;
+}
+
+/* 2. APPLY TO BODY GLOBALLY */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  min-height: 100vh; /* Ensures background covers full height */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -7,10 +29,10 @@
   font-weight: normal;
 }
 
-a,
-.green {
+/* Links and helper classes */
+a, .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: var(--accent-color); /* Use your variable here! */
   transition: 0.4s;
   padding: 3px;
 }
@@ -21,6 +43,7 @@ a,
   }
 }
 
+/* 3. ONLY LAYOUT CHANGES GO IN MEDIA QUERIES */
 @media (min-width: 1024px) {
   body {
     display: flex;
