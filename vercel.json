@@ -12,7 +12,7 @@
   ],
   "functions": {
     "backend/src/main.ts": {
-      "runtime": "@vercel/node"
+      "runtime": "vercel-node@latest"
     }
   }
 }
