@@ -4,6 +4,8 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors(); // Allows your frontend to talk to the backend
-  await app.listen(3000);
+  if (process.env.NODE_ENV !== 'production') {
+    await app.listen(3000);
+  }
 }
 bootstrap();
