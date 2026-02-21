@@ -11,8 +11,5 @@
     }
   ],
   "functions": {
-    "backend/src/main.ts": {
-      "runtime": "vercel-node@latest"
-    }
   }
 }
