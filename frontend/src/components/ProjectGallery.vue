@@ -47,7 +47,7 @@ const projects = ref([
   {
     title: 'So High',
     description: 'Doja Cat',
-    image: getImageUrl('song5.jpg')
+    image: getImageUrl('doja.png')
   }
 ])
 </script>

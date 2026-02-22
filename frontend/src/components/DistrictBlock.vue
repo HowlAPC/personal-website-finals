@@ -16,16 +16,16 @@
 <script setup>
 import { ref } from 'vue'
 
-const title = ref('ENCRYPTED_ZONE')
+const title = ref('DREAMS AND GOALS')
 
 const sections = ref([
   {
-    header: 'VOID_PROTOCOL',
-    content: 'The digital landscape shifts under the weight of encrypted streams. Every byte is a story, and every glitch is a signature.'
+    header: 'Goals',
+    content: 'My goals are to graduate with good grades and to get a job'
   },
   {
-    header: 'NEON_OVERRIDE',
-    content: 'Bypassing standard restrictions allows for total UI control. Stability is sacrificed for raw visual intensity.'
+    header: 'Dreams',
+    content: 'No dreams at all ;P'
   }
 ])
 </script>

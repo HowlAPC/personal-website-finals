@@ -29,7 +29,7 @@ const isUnlocked = ref(false)
 const isTransitioning = ref(false)
 const loginError = ref(false)
 
-const SECRET_PASS = 'AD' 
+const SECRET_PASS = 'HOWL' 
 
 const checkPassword = () => {
   if (passwordInput.value === SECRET_PASS) {
