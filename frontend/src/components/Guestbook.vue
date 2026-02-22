@@ -34,7 +34,7 @@ const form = ref({ name: '', message: '' });
 const fetchEntries = async () => {
   try {
   
-    const res = await fetch('/guestbook');
+    const res = await fetch('/api/guestbook');
     if (!res.ok) throw new Error('Network response was not ok');
     entries.value = await res.json();
   } catch (e) {
@@ -46,7 +46,7 @@ const submitEntry = async () => {
   loading.value = true;
   try {
   
-    const res = await fetch('/guestbook', {
+    const res = await fetch('/api/guestbook', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form.value)
