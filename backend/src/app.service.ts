@@ -10,7 +10,7 @@ export class AppService {
     // This pulls your keys from the Vercel Environment Variables
     this.supabase = createClient(
       this.configService.get<string>('SUPABASE_URL') || '',
-      this.configService.get<string>('SUPABASE_ANON_KEY') || ''
+      this.configService.get<string>('SUPABASE_KEY') || ''
     );
   }
 
