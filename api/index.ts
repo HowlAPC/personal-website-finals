@@ -1,3 +1,20 @@
-// This simply imports your existing logic from the backend folder
-import handler from '../backend/src/main';
-export default handler;
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from '../backend/src/app.module';
+import { ExpressAdapter } from '@nestjs/platform-express';
+import express from 'express';
+
+const server = express();
+
+export const createNestServer = async (expressInstance: any) => {
+  const app = await NestFactory.create(
+    AppModule,
+    new ExpressAdapter(expressInstance),
+  );
+  app.enableCors();
+  return app.init();
+};
+
+export default async (req: any, res: any) => {
+  await createNestServer(server);
+  server(req, res);
+};
