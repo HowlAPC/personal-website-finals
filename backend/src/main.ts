@@ -5,9 +5,12 @@ import express from 'express';
 
 const server = express();
 
-export const bootstrap = async (expressInstance) => {
-  const app = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance));
-  app.enableCors(); // Prevents CORS errors on the frontend
+export const bootstrap = async (expressInstance: any) => { // Add : any here
+  const app = await NestFactory.create(
+    AppModule, 
+    new ExpressAdapter(expressInstance)
+  );
+  app.enableCors();
   await app.init();
 };
 
