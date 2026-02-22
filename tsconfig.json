@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS", 
+    "moduleResolution": "node",
+    "target": "es2021",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "useDefineForClassFields": false,
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
