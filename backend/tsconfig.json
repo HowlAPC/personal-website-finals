@@ -5,6 +5,7 @@
     "target": "ES2021",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "useDefineForClassFields": false,
     "esModuleInterop": true,
     "baseUrl": "./",
     "outDir": "./dist",

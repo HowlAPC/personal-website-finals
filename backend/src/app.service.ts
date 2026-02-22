@@ -7,12 +7,15 @@ export class AppService {
   private supabase: SupabaseClient;
 
   constructor(private configService: ConfigService) {
-    // This pulls your keys from the Vercel Environment Variables
-    this.supabase = createClient(
-      this.configService.get<string>('SUPABASE_URL') || '',
-      this.configService.get<string>('SUPABASE_KEY') || ''
-    );
+  const url = this.configService.get<string>('SUPABASE_URL');
+  const key = this.configService.get<string>('SUPABASE_ANON_KEY');
+  
+  if (!url || !key) {
+    throw new Error('Supabase URL or Key is missing from Environment Variables');
   }
+  
+  this.supabase = createClient(url, key);
+}
 
   async getComments() {
     const { data, error } = await this.supabase
