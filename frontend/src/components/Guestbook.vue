@@ -33,8 +33,8 @@ const form = ref({ name: '', message: '' });
 
 const fetchEntries = async () => {
   try {
-    // FIX: Changed from localhost:3000 to relative /api path
-    const res = await fetch('/api/guestbook');
+
+    const res = await fetch('/guestbook');
     if (!res.ok) throw new Error('Network response was not ok');
     entries.value = await res.json();
   } catch (e) {
