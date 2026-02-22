@@ -7,7 +7,8 @@
         <div class="image-wrapper">
           <img 
             :src="isDark && project.darkImage ? project.darkImage : project.image" 
-            :alt="project.title" 
+            :alt="project.title"
+            :class="{ 'is-active-theme': isDark }"
           />
         </div>
         <div class="card-content">
@@ -89,10 +90,7 @@ onUnmounted(() => {
 })
 </script>
 
-
-
 <style scoped>
-
 .gallery-container {
   width: 100%;
   padding: 2rem 0;
@@ -141,6 +139,11 @@ onUnmounted(() => {
   object-fit: cover;
   filter: grayscale(100%);
   transition: filter 0.3s ease;
+}
+
+/* Removes grayscale when isDark is true */
+.image-wrapper img.is-active-theme {
+  filter: grayscale(0%);
 }
 
 .project-card:hover img {
