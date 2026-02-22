@@ -1,6 +1,6 @@
 <template>
   <section class="gallery-container">
-    <h2 class="gallery-title">{{ isDark ? 'TERMINAL_FILES' : 'SONGS' }}</h2>
+    <h2 class="gallery-title">{{ isDark ? 'DARKER SONGS' : 'SONGS' }}</h2>
     
     <div class="project-grid">
       <div v-for="(project, index) in projects" :key="index" class="project-card">
@@ -64,15 +64,15 @@ const projects = ref([
   },
   {
     title: 'So High',
-    darkTitle: 'ALTITUDE_MAX',
+    darkTitle: 'ecstacy',
     description: 'Doja Cat',
-    darkDescription: 'SIGNAL: STRENGTH_100',
+    darkDescription: 'SUICIDAL-IDOL',
     image: getImageUrl('doja.png'),
-    darkImage: getImageUrl('doja_dark.png')
+    darkImage: getImageUrl('idol.png')
   }
 ])
 
-// MutationObserver to detect theme toggle from document.body
+
 let observer = null
 
 onMounted(() => {
