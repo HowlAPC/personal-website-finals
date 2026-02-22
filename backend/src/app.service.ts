@@ -8,7 +8,7 @@ export class AppService {
 
   constructor(private configService: ConfigService) {
   const url = this.configService.get<string>('SUPABASE_URL');
-  const key = this.configService.get<string>('SUPABASE_ANON_KEY');
+  const key = this.configService.get<string>('SUPABASE_KEY');
   
   if (!url || !key) {
     throw new Error('Supabase URL or Key is missing from Environment Variables');
