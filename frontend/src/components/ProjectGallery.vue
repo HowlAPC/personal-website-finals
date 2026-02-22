@@ -5,7 +5,10 @@
     <div class="project-grid">
       <div v-for="(project, index) in projects" :key="index" class="project-card">
         <div class="image-wrapper">
-          <img :src="isDark && project.darkImage ? project.darkImage : project.image" :alt="project.title" />
+          <img 
+            :src="isDark && project.darkImage ? project.darkImage : project.image" 
+            :alt="project.title" 
+          />
         </div>
         <div class="card-content">
           <h3>{{ isDark ? project.darkTitle : project.title }}</h3>
@@ -28,49 +31,52 @@ const getImageUrl = (name) => {
 const projects = ref([
   {
     title: 'Guess featuring billie eilish',
-    darkTitle: 'GUESS_REMIX_ENCRYPTED',
+    darkTitle: 'Drown in Your Love',
     description: 'Charli XCX & Billie Eilish',
-    darkDescription: 'PROTOCOL: 360_BRAT',
-    image: getImageUrl('bratb.jpg') 
+    darkDescription: 'ORGAVSM',
+    image: getImageUrl('bratb.jpg'),
+    darkImage: getImageUrl('dro.png')
   },
   {
     title: 'BIRDS OF A FEATHER',
-    darkTitle: 'AVIAN_SQUADRON_V1',
+    darkTitle: 'BABYDOLL',
     description: 'Billie Eilish',
-    darkDescription: 'FILE_TYPE: BLUE_PRINT',
-    image: getImageUrl('billie.jpg') 
+    darkDescription: 'Ari Abdul',
+    image: getImageUrl('billie.jpg'),
+    darkImage: getImageUrl('doll.webp') 
   },
   {
-    title: 'WILDFLOWER', // Fixed 'header' key to 'title'
-    darkTitle: 'FLORA_BOTANICA',
+    title: 'WILDFLOWER', 
+    darkTitle: "I'll Do It",
     description: 'Billie Eilish',
-    darkDescription: 'STATUS: ORGANIC_MATCH',
-    image: getImageUrl('billie.jpg')
+    darkDescription: 'Heidi Montag',
+    image: getImageUrl('billie.jpg'),
+    darkImage: getImageUrl('heidi.png')
   },
   {
     title: 'No One Noticed',
-    darkTitle: 'VOID_OBSERVATION',
+    darkTitle: 'Love POtions',
     description: 'The Marias',
-    darkDescription: 'ORIGIN: MARIAS_OS',
-    image: getImageUrl('maria.webp')
+    darkDescription: 'BJ Lips & princess paparazzi',
+    image: getImageUrl('maria.webp'),
+    darkImage: getImageUrl('potion.jpg')
   },
   {
     title: 'So High',
     darkTitle: 'ALTITUDE_MAX',
     description: 'Doja Cat',
     darkDescription: 'SIGNAL: STRENGTH_100',
-    image: getImageUrl('doja.png')
+    image: getImageUrl('doja.png'),
+    darkImage: getImageUrl('doja_dark.png')
   }
 ])
 
-// --- THEME TRACKING LOGIC ---
+// MutationObserver to detect theme toggle from document.body
 let observer = null
 
 onMounted(() => {
-  // Initial check
   isDark.value = document.body.classList.contains('dark-theme')
 
-  // Watch body for class changes (theme toggle)
   observer = new MutationObserver(() => {
     isDark.value = document.body.classList.contains('dark-theme')
   })
@@ -82,6 +88,8 @@ onUnmounted(() => {
   if (observer) observer.disconnect()
 })
 </script>
+
+
 
 <style scoped>
 
