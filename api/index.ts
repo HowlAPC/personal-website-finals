@@ -10,6 +10,10 @@ export const createNestServer = async (expressInstance: any) => {
     AppModule,
     new ExpressAdapter(expressInstance),
   );
+  
+  // ADD THIS LINE - This maps /api/guestbook to your controller
+  app.setGlobalPrefix('api'); 
+  
   app.enableCors();
   return app.init();
 };
