@@ -3,11 +3,16 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/index.ts"
+      "destination": "/backend/src/main.ts"
     },
     {
       "source": "/((?!api/).*)",
-      "destination": "/frontend/dist/index.html"
+      "destination": "/frontend/dist/$1"
     }
-  ]
+  ],
+  "functions": {
+    "backend/src/main.ts": {
+      "runtime": "@vercel/node"
+    }
+  }
 }

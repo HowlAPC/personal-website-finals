@@ -10,6 +10,7 @@ export const bootstrap = async (expressInstance: any) => { // Add : any here
     AppModule, 
     new ExpressAdapter(expressInstance)
   );
+  app.setGlobalPrefix('api');
   app.enableCors();
   await app.init();
 };

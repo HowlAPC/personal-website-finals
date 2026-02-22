@@ -30,7 +30,7 @@ export class AppService {
   async addComment(name: string, message: string) {
     const { data, error } = await this.supabase
       .from('guestbook')
-      .insert([{ name, message }]) // Matches the 'message' field in your Vue form
+      .insert([{ name, message }])
       .select()
       .single();
     
