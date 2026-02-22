@@ -46,7 +46,7 @@ const submitEntry = async () => {
   loading.value = true;
   try {
   
-    const res = await fetch('/api/guestbook', {
+    const res = await fetch('/guestbook', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form.value)
