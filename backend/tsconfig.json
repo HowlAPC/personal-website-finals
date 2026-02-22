@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "CommonJS", 
     "moduleResolution": "node",
-    "target": "es2017",
+    "target": "es2015",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "useDefineForClassFields": false,
@@ -10,6 +10,7 @@
     "baseUrl": "./",
     "outDir": "./dist",
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "allowSyntheticDefaultImports": true
   }
 }
