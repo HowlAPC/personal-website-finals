@@ -1,5 +1,6 @@
 {
 
+  
     
   "name": "personal-website-root",
   "version": "1.0.0",
@@ -14,6 +15,9 @@
   "devDependencies": {
     "@vercel/node": "latest",
     "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build"
   }
 
   
