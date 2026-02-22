@@ -18,10 +18,7 @@
 <script setup>
 import { ref } from 'vue'
 
-/**
- * Helper function to dynamically resolve image paths from src/assets/images/
- * Vite requires this 'new URL' syntax for dynamic local assets.
- */
+
 const getImageUrl = (name) => {
   return new URL(`../assets/images/${name}`, import.meta.url).href
 }
@@ -30,33 +27,33 @@ const projects = ref([
   {
     title: 'Guess featuring billie eilish',
     description: 'Charli XCX & Billie Eilish',
-    image: getImageUrl('bratb.jpg') // Replace with your actual filename
+    image: getImageUrl('bratb.jpg') 
   },
   {
-    title: 'Neon Vault',
-    description: 'Secure protection interface.',
-    image: getImageUrl('song2.png') // Works with .png, .jpg, .webp, etc.
+    title: 'BIRDS OF A FEATHER',
+    description: 'Billie Eilish',
+    image: getImageUrl('billie.jpg') 
   },
   {
-    header: 'Bio-Link',
-    description: 'Minimalist bio component.',
-    image: getImageUrl('song3.jpg')
+    header: 'WILDFLOWER',
+    description: 'Billie Eilish',
+    image: getImageUrl('billie.jpg')
   },
   {
-    title: 'Data Stream',
-    description: 'Real-time analytics feed.',
-    image: getImageUrl('song4.jpg')
+    title: 'No One Noticed',
+    description: 'The Marias',
+    image: getImageUrl('maria.webp')
   },
   {
-    title: 'Void Shell',
-    description: 'Terminal-based UI kit.',
+    title: 'So High',
+    description: 'Doja Cat',
     image: getImageUrl('song5.jpg')
   }
 ])
 </script>
 
 <style scoped>
-/* Your existing styles remain exactly the same */
+
 .gallery-container {
   width: 100%;
   padding: 2rem 0;
