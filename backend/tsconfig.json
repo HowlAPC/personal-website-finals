@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "CommonJS", 
     "moduleResolution": "node",
-    "target": "ES2021",
+    "target": "es2017",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "useDefineForClassFields": false,
