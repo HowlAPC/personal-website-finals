@@ -1,14 +1,15 @@
 <template>
   <section class="gallery-container">
-    <h2 class="gallery-title">SONGS</h2>
+    <h2 class="gallery-title">{{ isDark ? 'TERMINAL_FILES' : 'SONGS' }}</h2>
+    
     <div class="project-grid">
       <div v-for="(project, index) in projects" :key="index" class="project-card">
         <div class="image-wrapper">
-          <img :src="project.image" :alt="project.title" />
+          <img :src="isDark && project.darkImage ? project.darkImage : project.image" :alt="project.title" />
         </div>
         <div class="card-content">
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.description }}</p>
+          <h3>{{ isDark ? project.darkTitle : project.title }}</h3>
+          <p>{{ isDark ? project.darkDescription : project.description }}</p>
         </div>
       </div>
     </div>
@@ -16,8 +17,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
+const isDark = ref(false)
 
 const getImageUrl = (name) => {
   return new URL(`../assets/images/${name}`, import.meta.url).href
@@ -26,30 +28,59 @@ const getImageUrl = (name) => {
 const projects = ref([
   {
     title: 'Guess featuring billie eilish',
+    darkTitle: 'GUESS_REMIX_ENCRYPTED',
     description: 'Charli XCX & Billie Eilish',
+    darkDescription: 'PROTOCOL: 360_BRAT',
     image: getImageUrl('bratb.jpg') 
   },
   {
     title: 'BIRDS OF A FEATHER',
+    darkTitle: 'AVIAN_SQUADRON_V1',
     description: 'Billie Eilish',
+    darkDescription: 'FILE_TYPE: BLUE_PRINT',
     image: getImageUrl('billie.jpg') 
   },
   {
-    header: 'WILDFLOWER',
+    title: 'WILDFLOWER', // Fixed 'header' key to 'title'
+    darkTitle: 'FLORA_BOTANICA',
     description: 'Billie Eilish',
+    darkDescription: 'STATUS: ORGANIC_MATCH',
     image: getImageUrl('billie.jpg')
   },
   {
     title: 'No One Noticed',
+    darkTitle: 'VOID_OBSERVATION',
     description: 'The Marias',
+    darkDescription: 'ORIGIN: MARIAS_OS',
     image: getImageUrl('maria.webp')
   },
   {
     title: 'So High',
+    darkTitle: 'ALTITUDE_MAX',
     description: 'Doja Cat',
+    darkDescription: 'SIGNAL: STRENGTH_100',
     image: getImageUrl('doja.png')
   }
 ])
+
+// --- THEME TRACKING LOGIC ---
+let observer = null
+
+onMounted(() => {
+  // Initial check
+  isDark.value = document.body.classList.contains('dark-theme')
+
+  // Watch body for class changes (theme toggle)
+  observer = new MutationObserver(() => {
+    isDark.value = document.body.classList.contains('dark-theme')
+  })
+
+  observer.observe(document.body, { attributes: true, attributeFilter: ['class'] })
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+})
 </script>
 
 <style scoped>
