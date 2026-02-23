@@ -35,94 +35,110 @@ onUnmounted(() => observer?.disconnect())
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 0;
+  padding: 3rem 0;
   perspective: 1000px;
 }
 
 .glitch-text {
+  /* Forced Sleek Courier New */
   font-family: 'Courier New', Courier, monospace;
   font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 900;
+  font-weight: 700;
   position: relative;
   color: var(--text-color);
-  letter-spacing: 10px;
+  letter-spacing: 8px;
   text-transform: uppercase;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
+  /* Jitter animation now active in both modes, but different intensities */
+  animation: regular-jitter 6s infinite;
 }
 
-/* --- LIGHT MODE: INDUSTRIAL --- */
-.glitch-text::before {
+/* --- SHARED GLITCH PSEUDO-ELEMENTS --- */
+.glitch-text::before,
+.glitch-text::after {
   content: attr(data-text);
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  clip-path: inset(45% 0 45% 0);
-  opacity: 0;
+  background: transparent;
+  display: block;
 }
 
-.title-container:not(.chaotic-mode) .glitch-text:hover::before {
-  opacity: 1;
-  transform: translateX(4px);
-  border-top: 2px solid var(--text-color);
-  border-bottom: 2px solid var(--text-color);
-  background: var(--bg-color);
+/* --- LIGHT MODE: INDUSTRIAL SLEEK --- */
+.title-container:not(.chaotic-mode) .glitch-text::before {
+  left: 2px;
+  text-shadow: -1px 0 var(--accent-color);
+  clip-path: inset(45% 0 45% 0);
+  animation: industrial-glitch 4s infinite linear alternate-reverse;
+  opacity: 0.7;
 }
 
 .industrial-line {
-  width: 150px;
-  height: 2px;
+  width: 100px;
+  height: 1px;
   background: var(--text-color);
-  margin-top: 10px;
-  box-shadow: 0 0 10px var(--text-color);
+  margin-top: -5px;
+  opacity: 0.5;
 }
 
 /* --- DARK MODE: CHAOTIC --- */
 .chaotic-mode .glitch-text {
   text-shadow: 2px 0 #ff003c, -2px 0 #00ff41;
-  animation: jitter 4s infinite;
-}
-
-.chaotic-mode .glitch-text::before,
-.chaotic-mode .glitch-text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: var(--bg-color);
+  animation: heavy-jitter 3s infinite;
 }
 
 .chaotic-mode .glitch-text::before {
-  left: 2px;
-  text-shadow: -2px 0 #ff003c;
+  left: 3px;
+  text-shadow: -3px 0 #ff003c;
   clip-path: inset(10% 0 80% 0);
-  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  animation: chaotic-glitch-1 2s infinite linear alternate-reverse;
 }
 
 .chaotic-mode .glitch-text::after {
-  left: -2px;
-  text-shadow: -2px 0 #00ff41;
+  left: -3px;
+  text-shadow: -3px 0 #00ff41;
   clip-path: inset(80% 0 10% 0);
-  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+  animation: chaotic-glitch-2 1.5s infinite linear alternate-reverse;
 }
 
-@keyframes jitter {
-  0%, 90%, 100% { transform: none; opacity: 1; }
-  92% { transform: skew(10deg); opacity: 0.8; }
-  95% { transform: skew(-10deg); }
+/* --- ANIMATIONS --- */
+
+/* Subtle occasional shift for Light Mode */
+@keyframes regular-jitter {
+  0%, 95%, 100% { transform: none; }
+  96% { transform: translate(2px, -1px); }
+  97% { transform: translate(-1px, 1px); }
+  98% { transform: skewX(2deg); }
 }
 
-@keyframes glitch-anim-1 {
-  0% { clip-path: inset(20% 0 50% 0); }
-  20% { clip-path: inset(80% 0 1% 0); }
-  40% { clip-path: inset(10% 0 70% 0); }
-  100% { clip-path: inset(30% 0 20% 0); }
+/* More violent shift for Dark Mode */
+@keyframes heavy-jitter {
+  0%, 80%, 100% { transform: none; filter: blur(0); }
+  82% { transform: skew(5deg) translate(5px); filter: blur(1px); }
+  84% { transform: skew(-8deg) translate(-5px); }
+  86% { transform: none; }
 }
 
-@keyframes glitch-anim-2 {
-  0% { clip-path: inset(10% 0 80% 0); }
-  30% { clip-path: inset(50% 0 20% 0); }
-  70% { clip-path: inset(80% 0 5% 0); }
-  100% { clip-path: inset(0% 0 90% 0); }
+/* Horizontal slicing for Industrial mode */
+@keyframes industrial-glitch {
+  0%, 80%, 100% { opacity: 0; }
+  81% { opacity: 1; clip-path: inset(10% 0 80% 0); }
+  85% { opacity: 1; clip-path: inset(40% 0 40% 0); }
+  90% { opacity: 0; }
+}
+
+/* Random chaotic slicing for Dark Mode */
+@keyframes chaotic-glitch-1 {
+  0% { clip-path: inset(20% 0 50% 0); transform: translate(-5px); }
+  20% { clip-path: inset(80% 0 1% 0); transform: translate(5px); }
+  100% { clip-path: inset(30% 0 20% 0); transform: translate(0); }
+}
+
+@keyframes chaotic-glitch-2 {
+  0% { clip-path: inset(10% 0 80% 0); transform: translate(5px); }
+  50% { clip-path: inset(50% 0 20% 0); transform: translate(-5px); }
+  100% { clip-path: inset(0% 0 90% 0); transform: translate(0); }
 }
 </style>

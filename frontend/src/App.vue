@@ -6,7 +6,6 @@ import GlitchTitle from './components/GlitchTitle.vue'
 const isHovered = ref(false)
 const isPermanentlyOpen = ref(false)
 
-
 const handleUnlock = () => {
   isPermanentlyOpen.value = true
 }
@@ -29,20 +28,17 @@ const handleUnlock = () => {
       </div>
     </div>
 
-    
     <main>
       <GlitchTitle lightText="Mj Aragon" darkText="Howl!" />
       <UserBio />
       <ProjectGallery />
+      
       <div class="content-row">
         <InfoBlock /> 
         <DistrictBlock />
-        
       </div>
+      
       <Guestbook />
-      
-
-      
     </main>
   </div>
 </template>
@@ -51,21 +47,18 @@ const handleUnlock = () => {
 .app-container {
   min-height: 100vh;
   padding: 20px;
+  position: relative;
+  z-index: 2; /* Sits above the body background animations */
 }
-
 
 .content-row {
   display: grid;
-  /* Creates two equal columns */
   grid-template-columns: 1fr 1fr; 
   gap: 2rem;
   max-width: 1200px;
   margin: 2rem auto;
   align-items: stretch;
 }
-
-
-
 
 @media (max-width: 1024px) {
   .content-row {
@@ -74,11 +67,12 @@ const handleUnlock = () => {
   }
 }
 
-
+/* DRAWER FIX: position: fixed keeps it on screen during scroll */
 .drawer-wrapper {
-  position: fixed;
+  position: fixed; 
   top: 50%;
   right: 0;
+  /* Centered vertically on screen, hidden horizontally */
   transform: translateY(-50%) translateX(calc(100% - 40px));
   display: flex;
   align-items: center;
@@ -129,7 +123,7 @@ const handleUnlock = () => {
 
 @media (max-width: 768px) {
   .drawer-wrapper {
-    top: 20%;
+    top: 20%; /* Moves it higher on mobile to avoid thumbs */
   }
   .drawer-content {
     min-width: 280px;

@@ -1,33 +1,31 @@
 <template>
-  <div class="guestbook-container">
-    <h2 class="guestbook-title">GUESTBOOK</h2>
-    
-    <form @submit.prevent="handleSubmit" class="sign-form">
-      <input v-model="name" type="text" placeholder="NAME / ALIAS" required />
-      
-      <div class="textarea-wrapper">
-        <textarea 
-          v-model="message" 
-          placeholder="LEAVE A MESSAGE..." 
-          maxlength="200"
-          required
-        ></textarea>
-        <div class="char-counter" :class="{ 'at-limit': message.length >= 200 }">
-          {{ message.length }} / 200_BYTES
-        </div>
-      </div>
+  <section class="guestbook-container">
+    <h2 class="guestbook-title" data-text="TERMINAL_GUESTBOOK">TERMINAL_GUESTBOOK</h2>
 
-      <button type="submit">TRANSMIT_DATA</button>
+    <form @submit.prevent="submitEntry" class="sign-form">
+      <div class="input-wrapper">
+        <input v-model="form.name" placeholder="IDENT_NAME" required />
+        <textarea v-model="form.message" placeholder="WRITE_MESSAGE..." required></textarea>
+      </div>
+      <button type="submit" :disabled="loading">
+        {{ loading ? 'SENDING~' : 'ADD COMMENT' }}
+      </button>
     </form>
 
+    <div class="entries-list">
+      <div v-for="entry in entries" :key="entry.id" class="entry-card">
+        <div class="entry-meta">
+          <span class="entry-author">USR: {{ entry.name }}</span>
+          <span class="entry-date">{{ new Date(entry.created_at).toLocaleDateString() }}</span>
+        </div>
+        <p class="entry-msg">{{ entry.message }}</p>
+      </div>
     </div>
+  </section>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-
-const name = ref('')
-const message = ref('')
 
 const entries = ref([]);
 const loading = ref(false);
@@ -73,7 +71,7 @@ onMounted(fetchEntries);
   max-width: 800px;
   margin: 4rem auto;
   padding: 2rem;
-  background: rgba(128, 128, 128, 0.05);
+  background: rgba(var(--text-color), 0.05);
   border: 1px solid var(--text-color);
   font-family: 'Courier New', Courier, monospace;
 }
@@ -83,7 +81,6 @@ onMounted(fetchEntries);
   letter-spacing: 5px;
   margin-bottom: 2rem;
   text-align: center;
-  font-size: clamp(1.5rem, 5vw, 2rem);
 }
 
 .sign-form {
@@ -93,43 +90,12 @@ onMounted(fetchEntries);
   margin-bottom: 3rem;
 }
 
-.textarea-wrapper {
-  position: relative;
-  width: 100%;
-}
-
 input, textarea {
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--text-color);
+  border: 1px solid rgba(var(--text-color), 0.3);
   color: var(--text-color);
   padding: 12px;
   outline: none;
-  font-family: inherit;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* FIXED SIZE MESSAGE BOX */
-textarea {
-  min-height: 150px;
-  max-height: 150px;
-  resize: none;
-  padding-bottom: 30px; /* Space for the counter */
-}
-
-.char-counter {
-  position: absolute;
-  bottom: 10px;
-  right: 12px;
-  font-size: 0.7rem;
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.char-counter.at-limit {
-  color: #ff0000;
-  opacity: 1;
-  animation: flicker 0.2s infinite;
 }
 
 button {
@@ -140,8 +106,6 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
-  text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 button:hover {
@@ -151,10 +115,9 @@ button:hover {
 
 .entry-card {
   border-left: 2px solid var(--text-color);
-  background: rgba(128, 128, 128, 0.02);
+  background: rgba(var(--text-color), 0.02);
   padding: 1rem;
   margin-bottom: 1.5rem;
-  word-wrap: break-word;
 }
 
 .entry-meta {
@@ -163,24 +126,5 @@ button:hover {
   font-size: 0.75rem;
   opacity: 0.6;
   margin-bottom: 0.5rem;
-}
-
-@keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
-}
-
-/* MOBILE RESPONSIVENESS */
-@media (max-width: 600px) {
-  .guestbook-container {
-    margin: 2rem 10px;
-    padding: 1rem;
-  }
-  
-  .entry-meta {
-    flex-direction: column;
-    gap: 5px;
-  }
 }
 </style>
