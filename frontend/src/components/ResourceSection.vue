@@ -47,16 +47,20 @@ const groupedResources = [
     name: 'Inspirations',
     id: 'Inspirations',
     items: [
-      { title: 'APC_PORTAL', description: 'Access to student grades and enrollment details.', link: '#' },
-      { title: 'IT_CURRICULUM', description: 'Detailed roadmap for BSIT students.', link: '#' }
+      { title: 'Arknights: Endfield', description: 'Theme and visuals', link: '#' },
+      { title: 'XXL WOOFIA', description: 'The switching to a different theme...Access code "HOWL"', link: '#' }
     ]
   },
   {
     name: 'Development Tools',
     id: 'TECH_STACK',
     items: [
-      { title: 'VUE_DOCS', description: 'The progressive framework for building interfaces.', link: '#' },
-      { title: 'GLITCH_RESOURCES', description: 'CSS tricks for advanced digital aesthetics.', link: '#' }
+      { title: 'Vue', description: 'The progressive framework for building interfaces.', link: '#' },
+      { title: 'NestJS', description: 'Used for connecting to Supabase', link: '#' },
+      { title: 'Supabase', description: 'Database for storing comments', link: '#' },
+      { title: 'Gemini', description: 'Coding assistance', link: '#' },
+
+
     ]
   }
 ]
