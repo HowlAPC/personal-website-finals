@@ -3,12 +3,15 @@
 :root {
   --bg-color: #ffffff;
   --text-color: #2c3e50;
+  /* Added RGB for background transparency effects */
+  --text-color-rgb: 44, 62, 80; 
   --accent-color: #42b883;
 }
 
 body.dark-theme {
   --bg-color: #0d0d0d;
-  --text-color: #9932CC; /* Matrix-style green */
+  --text-color: #9932CC; 
+  --text-color-rgb: 153, 50, 204;
   --accent-color: #ff003c;
 }
 
@@ -18,9 +21,36 @@ body {
   margin: 0;
   min-height: 100vh;
   width: 100%;
-  transition: background-color 0.05s; /* Snappy transition for glitch feel */
+  transition: background-color 0.05s;
   display: flex;
   justify-content: center;
+
+  /* --- ANIMATED BACKGROUND LAYER --- */
+  background-image: 
+    radial-gradient(rgba(var(--text-color-rgb), 0.1) 1px, transparent 1px),
+    linear-gradient(rgba(var(--text-color-rgb), 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--text-color-rgb), 0.05) 1px, transparent 1px);
+  background-size: 50px 50px, 100px 100px, 100px 100px;
+  animation: bg-drift 40s linear infinite;
+  position: relative;
+}
+
+/* --- SCANLINE OVERLAY --- */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.05) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 9998; /* Just below the glitch overlay */
+  pointer-events: none;
+  opacity: 0.6;
 }
 
 #app {
@@ -31,9 +61,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 1; /* Ensures content is above background */
 }
 
-/* --- THE GLITCH OVERLAY --- */
+/* --- ANIMATIONS --- */
+@keyframes bg-drift {
+  from { background-position: 0 0, 0 0, 0 0; }
+  to { background-position: 50px 50px, 100px 100px, 100px 100px; }
+}
+
+/* --- YOUR EXISTING GLITCH CLASSES --- */
 .glitch-overlay {
   position: relative;
   overflow: hidden;
@@ -62,11 +100,9 @@ body {
   to { opacity: 0; }
 }
 
-/* Add this to your main.css */
-
 .global-flicker {
   animation: vanish-flicker 0.4s steps(2) forwards;
-  pointer-events: none; /* Prevent clicking during the glitch */
+  pointer-events: none;
 }
 
 @keyframes vanish-flicker {
@@ -77,6 +113,5 @@ body {
   40% { opacity: 0; }
   50% { opacity: 1; }
   60% { opacity: 0; }
-  /* Flickers back to normal at the end */
   100% { opacity: 1; transform: skewX(0); scale: 1; }
 }

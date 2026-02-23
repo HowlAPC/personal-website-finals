@@ -78,7 +78,7 @@ const handleUnlock = () => {
   position: fixed;
   top: 50%;
   right: 0;
-  transform: translateY(-50%) translateX(calc(100% - 30px));
+  transform: translateY(-50%) translateX(calc(100% - 40px));
   display: flex;
   align-items: center;
   z-index: 10000;
@@ -90,19 +90,20 @@ const handleUnlock = () => {
 }
 
 .drawer-handle {
-  width: 30px;
-  height: 60px;
+  width: 40px;
+  height: 80px;
   background: var(--text-color);
   color: var(--bg-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px 0 0 8px;
+  border-radius: 12px 0 0 12px;
   cursor: pointer;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+  box-shadow: -2px 0 15px rgba(0,0,0,0.3);
 }
 
 .handle-icon {
+  font-size: 1.2rem;
   font-weight: bold;
   transition: transform 0.3s;
 }
@@ -115,11 +116,11 @@ const handleUnlock = () => {
   background: var(--bg-color);
   border: 1px solid var(--text-color);
   border-right: none;
-  padding: 20px;
-  min-width: 280px; /* Fixed width to prevent jumping */
-  min-height: 120px;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-  border-radius: 0 0 0 8px;
+  padding: 30px; 
+  min-width: 350px; 
+  min-height: 160px;
+  box-shadow: -10px 0 25px rgba(0,0,0,0.3);
+  border-radius: 0 0 0 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,6 +129,10 @@ const handleUnlock = () => {
 @media (max-width: 768px) {
   .drawer-wrapper {
     top: 20%;
+  }
+  .drawer-content {
+    min-width: 280px;
+    padding: 20px;
   }
 }
 </style>
