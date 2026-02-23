@@ -96,6 +96,11 @@ input, textarea {
   color: var(--text-color);
   padding: 12px;
   outline: none;
+  height: 45px; 
+  box-sizing: border-box;
+  width: 100%;
+  height:150px;
+  resize: none;
 }
 
 button {
@@ -106,6 +111,7 @@ button {
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
+  width: 100%;
 }
 
 button:hover {
