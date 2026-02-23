@@ -30,7 +30,7 @@ const handleUnlock = () => {
 
     
     <main>
-      <DigitalHero text="Mj Aragon" />
+      <DigitalHero text="mey" />
       <UserBio />
       <ProjectGallery />
       <div class="content-row">
