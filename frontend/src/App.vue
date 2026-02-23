@@ -28,6 +28,7 @@ const handleUnlock = () => {
       </div>
     </div>
 
+    
     <main>
       <DigitalHero text="Mj Aragon" />
       <UserBio />
