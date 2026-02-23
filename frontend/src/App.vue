@@ -5,7 +5,7 @@ import Guestbook from './components/Guestbook.vue'
 const isHovered = ref(false)
 const isPermanentlyOpen = ref(false)
 
-// Logic to keep the drawer out after the password is correct
+
 const handleUnlock = () => {
   isPermanentlyOpen.value = true
 }
@@ -52,7 +52,7 @@ const handleUnlock = () => {
   padding: 20px;
 }
 
-/* --- GRID SYSTEM --- */
+
 .content-row {
   display: grid;
   /* Creates two equal columns */
@@ -65,7 +65,7 @@ const handleUnlock = () => {
 
 
 
-/* Stacks blocks vertically on small screens */
+
 @media (max-width: 1024px) {
   .content-row {
     grid-template-columns: 1fr;
@@ -73,7 +73,7 @@ const handleUnlock = () => {
   }
 }
 
-/* --- DRAWER STYLES --- */
+
 .drawer-wrapper {
   position: fixed;
   top: 50%;

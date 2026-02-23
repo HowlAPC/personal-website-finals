@@ -23,7 +23,7 @@ const sections = ref([
   },
   {
     header: 'Traveling | Roaming',
-    content: 'The interface utilizes a custom CSS variable architecture, allowing for seamless global theme transitions.'
+    content: "I have a bit of wanderlust, so I enjoy traveling and going to different places. I relish the different vibes given by the different places I've been to. "
   },
   {
     header: 'Gaming',
