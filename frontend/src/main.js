@@ -12,6 +12,7 @@ import InfoBlock from './components/InfoBlock.vue'
 import DistrictBlock from './components/DistrictBlock.vue'
 import Guestbook from './components/Guestbook.vue'
 import GlitchTitle from './components/GlitchTitle.vue'
+import ResourceSection from './components/ResourceSection.vue'
 
 const app = createApp(App)
 
@@ -24,5 +25,6 @@ app.component('ProjectGallery', ProjectGallery)
 app.component('InfoBlock', InfoBlock)
 app.component('DistrictBlock', DistrictBlock)
 app.component('Guestbook', Guestbook)
+app.component('ResourceSection', ResourceSection)
 
 app.mount('#app')

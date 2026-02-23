@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import Guestbook from './components/Guestbook.vue'
 import GlitchTitle from './components/GlitchTitle.vue'
+import ResourceSection from './components/ResourceSection.vue'
 
 const isHovered = ref(false)
 const isPermanentlyOpen = ref(false)
@@ -37,6 +38,7 @@ const handleUnlock = () => {
         <InfoBlock /> 
         <DistrictBlock />
       </div>
+      <ResourceSection />
       
       <Guestbook />
     </main>

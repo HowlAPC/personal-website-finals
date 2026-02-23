@@ -90,17 +90,29 @@ onMounted(fetchEntries);
   margin-bottom: 3rem;
 }
 
-input, textarea {
+input {
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(var(--text-color), 0.3);
+  border: 1px solid rgba(var(--text-color-rgb), 0.3);
   color: var(--text-color);
   padding: 12px;
   outline: none;
+  /* Ensure the name box doesn't grow */
   height: 45px; 
   box-sizing: border-box;
-  width: 100%;
-  height:150px;
-  resize: none;
+}
+
+textarea {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(var(--text-color-rgb), 0.3);
+  color: var(--text-color);
+  padding: 12px;
+  outline: none;
+  
+  /* Fixed Size Logic */
+  height: 150px;       /* Set your preferred fixed height */
+  width: 100%;         /* Spans the container */
+  resize: none;        /* Disables the drag-to-resize handle */
+  box-sizing: border-box;
 }
 
 button {

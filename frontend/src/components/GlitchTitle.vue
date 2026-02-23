@@ -46,96 +46,96 @@ onUnmounted(() => observer?.disconnect())
   font-weight: 700;
   position: relative;
   color: var(--text-color);
-  letter-spacing: 8px;
+  /* Tighter spacing as requested */
+  letter-spacing: 2px; 
   text-transform: uppercase;
-  transition: all 0.2s ease;
-  animation: regular-jitter 6s infinite;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* --- SHARED PSEUDO-ELEMENTS --- */
-.glitch-text::before,
-.glitch-text::after {
+/* --- LIGHT MODE: INDUSTRIAL --- */
+.title-container:not(.chaotic-mode) .glitch-text {
+  animation: occasional-snap 8s infinite;
+}
+
+.industrial-line {
+  width: 80px;
+  height: 1px;
+  background: var(--text-color);
+  margin-top: 5px;
+  opacity: 0.4;
+}
+
+/* --- DARK MODE: CHAOTIC FUTURISTIC --- */
+.chaotic-mode .glitch-text {
+  font-family: 'Syncopate', 'Orbitron', sans-serif;
+  font-weight: 900;
+  letter-spacing: 4px;
+  /* Occasional but intense jitter */
+  animation: intense-burst 5s infinite;
+  text-shadow: 0 0 2px rgba(var(--text-color-rgb), 0.3);
+}
+
+/* SUBTLE CHROMATIC ABERRATION */
+.chaotic-mode .glitch-text::before,
+.chaotic-mode .glitch-text::after {
   content: attr(data-text);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
-  display: block;
+  opacity: 0.8;
+  display: none; /* Hidden until the burst animation triggers */
 }
 
-/* --- LIGHT MODE: INDUSTRIAL --- */
-.title-container:not(.chaotic-mode) .glitch-text::before {
-  left: 2px;
-  text-shadow: -1px 0 var(--accent-color);
-  clip-path: inset(45% 0 45% 0);
-  animation: industrial-glitch 4s infinite linear alternate-reverse;
-  opacity: 0.7;
-}
-
-.industrial-line {
-  width: 100px;
-  height: 1px;
-  background: var(--text-color);
-  margin-top: -5px;
-  opacity: 0.5;
-}
-
-/* --- DARK MODE: CHAOTIC FUTURISTIC --- */
-.chaotic-mode .glitch-text {
-  /* Futuristic Font Stack: Wide and Geometric */
-  font-family: 'Syncopate', 'Orbitron', 'Trebuchet MS', sans-serif;
-  font-weight: 900;
-  letter-spacing: 15px;
-  /* Removed Red/Green text shadows for a cleaner, high-tech jitter */
-  text-shadow: 0 0 5px var(--text-color);
-  animation: aggressive-jitter 0.15s infinite;
-}
-
-/* Fragmentation layers for Dark Mode */
 .chaotic-mode .glitch-text::before {
-  left: -2px;
-  clip-path: inset(20% 0 50% 0);
-  opacity: 0.5;
-  animation: frag-shift 0.2s infinite;
+  color: #ff003c; /* Red shift */
+  z-index: -1;
 }
 
 .chaotic-mode .glitch-text::after {
-  left: 2px;
-  clip-path: inset(60% 0 10% 0);
-  opacity: 0.5;
-  animation: frag-shift 0.2s infinite reverse;
+  color: #00ff41; /* Green shift */
+  z-index: -2;
+}
+
+/* Trigger pseudo-elements during the burst */
+.chaotic-mode .glitch-text {
+  animation: intense-burst 6s infinite;
 }
 
 /* --- ANIMATIONS --- */
 
-/* Subtle shift for Industrial Mode */
-@keyframes regular-jitter {
-  0%, 95%, 100% { transform: none; }
-  96% { transform: translate(2px, -1px); }
-  98% { transform: skewX(2deg); }
+/* Intense occasional burst for Dark Mode */
+@keyframes intense-burst {
+  0%, 90%, 100% { transform: none; text-shadow: none; }
+  /* The "Seizure" phase (91% to 95%) */
+  91% { transform: translate(4px, -2px) skewX(5deg); text-shadow: 2px 0 #ff003c; }
+  92% { transform: translate(-4px, 2px) skewX(-5deg); text-shadow: -2px 0 #00ff41; }
+  93% { transform: translate(2px, 1px); clip-path: inset(20% 0 40% 0); }
+  94% { transform: translate(-2px, -1px); clip-path: inset(60% 0 10% 0); }
+  95% { transform: none; clip-path: none; }
 }
 
-/* Rapid vibration for Chaotic Mode */
-@keyframes aggressive-jitter {
-  0% { transform: translate(0); }
-  25% { transform: translate(1px, -1px) skewX(1deg); }
-  50% { transform: translate(-1px, 1px) skewX(-1deg); }
-  75% { transform: translate(1px, 1px); }
-  100% { transform: translate(0); }
+/* Subtle snap for Light Mode */
+@keyframes occasional-snap {
+  0%, 97%, 100% { transform: none; opacity: 1; }
+  98% { transform: translateX(2px); opacity: 0.8; }
+  99% { transform: translateX(-2px); }
 }
 
-/* Fragment slicing for Chaotic Mode */
-@keyframes frag-shift {
-  0% { transform: translateX(-5px); }
-  100% { transform: translateX(5px); }
+/* Industrial mode clip-glitch */
+.title-container:not(.chaotic-mode) .glitch-text::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  clip-path: inset(45% 0 45% 0);
+  animation: industrial-snap 8s infinite;
+  opacity: 0;
 }
 
-@keyframes industrial-glitch {
-  0%, 80%, 100% { opacity: 0; }
-  81% { opacity: 1; clip-path: inset(10% 0 80% 0); }
-  85% { opacity: 1; clip-path: inset(40% 0 40% 0); }
-  90% { opacity: 0; }
+@keyframes industrial-snap {
+  0%, 97%, 100% { opacity: 0; transform: none; }
+  98% { opacity: 1; transform: translateX(5px); color: var(--accent-color); }
 }
 </style>
