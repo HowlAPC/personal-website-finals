@@ -26,17 +26,16 @@
   border: 1px solid var(--text-color);
   transition: all 0.3s ease;
   
-  /* Adds a subtle shadow to make the "card" pop */
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .bio-header h2 {
-  font-size: 2.5rem; /* Larger heading */
+  font-size: 2.5rem; 
   margin-bottom: 0.5rem;
 }
 
 .bio-content p {
-  font-size: 1.2rem; /* Slightly larger text for readability */
+  font-size: 1.2rem; 
   line-height: 1.8;
 }
 </style>

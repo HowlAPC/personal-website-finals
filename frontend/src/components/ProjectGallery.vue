@@ -141,7 +141,6 @@ onUnmounted(() => {
   transition: filter 0.3s ease;
 }
 
-/* Removes grayscale when isDark is true */
 .image-wrapper img.is-active-theme {
   filter: grayscale(0%);
 }

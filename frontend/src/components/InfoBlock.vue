@@ -51,7 +51,6 @@ const sections = ref([
   text-transform: uppercase;
 }
 
-/* --- PASSIVE GLITCH ANIMATION --- */
 .passive-glitch::before,
 .passive-glitch::after {
   content: attr(data-text);
@@ -64,7 +63,7 @@ const sections = ref([
   clip: rect(0, 0, 0, 0); 
 }
 
-/* Red shift */
+
 .passive-glitch::before {
   left: 2px;
   text-shadow: -1px 0 #ff00c1;
@@ -105,12 +104,10 @@ const sections = ref([
   padding-left: 1.5rem;
 }
 
-/* Passive flicker on sub-headers */
 .section:nth-child(even) .sub-header {
   animation: subtle-flicker 4s infinite;
 }
 
-/* Animations */
 @keyframes glitch-anim-1 {
   0% { clip: rect(20px, 9999px, 21px, 0); }
   2% { clip: rect(80px, 9999px, 85px, 0); }

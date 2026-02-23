@@ -8,7 +8,7 @@
         <textarea v-model="form.message" placeholder="WRITE_MESSAGE..." required></textarea>
       </div>
       <button type="submit" :disabled="loading">
-        {{ loading ? 'ENCRYPTING...' : 'SEND_TRANSMISSION' }}
+        {{ loading ? 'SENDING~' : 'ADD COMMENT' }}
       </button>
     </form>
 

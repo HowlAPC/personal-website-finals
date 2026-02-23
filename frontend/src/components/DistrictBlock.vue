@@ -35,7 +35,6 @@ const sections = ref([
   max-width: 800px;
   margin: 3rem auto;
   padding: 2.5rem;
-  /* Adaptive Background */
   background: var(--bg-color);
   border: 1px solid var(--text-color);
   box-shadow: 0 0 15px rgba(var(--text-color), 0.1);
@@ -45,13 +44,13 @@ const sections = ref([
   font-family: 'Courier New', Courier, monospace;
 }
 
-/* Dark Mode Specific Tweaks */
+
 :global(.dark-theme) .district-block {
   background: linear-gradient(135deg, rgba(20, 0, 30, 0.95) 0%, rgba(5, 0, 10, 1) 100%);
   box-shadow: 0 0 25px rgba(153, 50, 204, 0.2);
 }
 
-/* Scanlines only visible in Dark Mode for that CRT feel */
+
 .district-block::after {
   content: "";
   position: absolute;
@@ -81,7 +80,7 @@ const sections = ref([
   letter-spacing: 4px;
 }
 
-/* Passive Purple Glitch */
+
 .district-header::before,
 .district-header::after {
   content: attr(data-text);
@@ -127,7 +126,7 @@ const sections = ref([
   opacity: 0.85;
 }
 
-/* Hazard Bar - Purple and Black/White */
+
 .hazard-bar {
   position: absolute;
   bottom: 0;
@@ -144,7 +143,7 @@ const sections = ref([
   opacity: 0.6;
 }
 
-/* Animations */
+
 @keyframes glitch-loop-1 {
   0%, 100% { clip: rect(0, 0, 0, 0); }
   1% { clip: rect(20px, 9999px, 40px, 0); }

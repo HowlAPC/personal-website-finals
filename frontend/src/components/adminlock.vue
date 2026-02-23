@@ -33,11 +33,11 @@ const SECRET_PASS = 'HOWL'
 
 const checkPassword = () => {
   if (passwordInput.value === SECRET_PASS) {
-    // Start the brief text phase
+  
     isTransitioning.value = true
     passwordInput.value = ''
     
-    // After 1.5 seconds, show the actual toggle
+  
     setTimeout(() => {
       isTransitioning.value = false
       isUnlocked.value = true
@@ -82,7 +82,7 @@ button {
   font-weight: bold;
 }
 
-/* Decoding Text Styles */
+
 .decoding-text {
   font-family: 'Courier New', monospace;
   font-weight: bold;
@@ -100,7 +100,6 @@ button {
   align-items: center;
 }
 
-/* Animations */
 @keyframes flicker {
   0% { opacity: 1; }
   100% { opacity: 0.4; transform: skewX(5deg); }

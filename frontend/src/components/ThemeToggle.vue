@@ -26,7 +26,7 @@ const isGlitching = ref(false)
 
 const handleToggle = () => {
   isGlitching.value = true
-  document.body.classList.add('global-flicker') // Updated to match your disappear effect
+  document.body.classList.add('global-flicker') 
   
   if (isDark.value) {
     document.body.classList.add('dark-theme')
@@ -60,11 +60,11 @@ onMounted(() => {
   font-family: 'Courier New', Courier, monospace;
 }
 
-/* 1. Container for the text and scan line */
+
 .label-wrapper {
   position: relative;
   padding: 2px 5px;
-  overflow: hidden; /* This keeps the line inside the text area */
+  overflow: hidden; 
   border-radius: 2px;
 }
 
@@ -75,13 +75,13 @@ onMounted(() => {
   z-index: 1;
 }
 
-/* 2. The Scanning Line Style */
+
 .scan-line {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px; /* Thickness of the line */
+  height: 4px; 
   background: var(--text-color);
   opacity: 0.6;
   box-shadow: 0 0 10px var(--text-color);
@@ -90,13 +90,13 @@ onMounted(() => {
   animation: scan-move 3s linear infinite;
 }
 
-/* 3. The Animation Logic */
+
 @keyframes scan-move {
   0% { top: -10%; }
   100% { top: 110%; }
 }
 
-/* Your existing Glitch effects */
+
 .glitching {
   animation: text-flicker 0.1s infinite;
 }
@@ -122,7 +122,7 @@ onMounted(() => {
   animation: shift-right 0.2s infinite;
 }
 
-/* Standard Switch Styling */
+
 .switch {
   position: relative;
   display: inline-block;
