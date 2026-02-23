@@ -11,10 +11,12 @@ import ProjectGallery from './components/ProjectGallery.vue'
 import InfoBlock from './components/InfoBlock.vue'
 import DistrictBlock from './components/DistrictBlock.vue'
 import Guestbook from './components/Guestbook.vue'
+import GlitchTitle from './components/GlitchTitle.vue'
 
 const app = createApp(App)
 
 // 2. Register them globally
+app.component('GlitchTitle', GlitchTitle)
 app.component('ThemeToggle', ThemeToggle)
 app.component('UserBio', UserBio)
 app.component('AdminLock', AdminLock)

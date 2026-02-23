@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import Guestbook from './components/Guestbook.vue'
+import GlitchTitle from './components/GlitchTitle.vue'
 
 const isHovered = ref(false)
 const isPermanentlyOpen = ref(false)
@@ -30,7 +31,7 @@ const handleUnlock = () => {
 
     
     <main>
-      <DigitalHero text="mey" />
+      <GlitchTitle lightText="Mj Aragon" darkText="Howl!" />
       <UserBio />
       <ProjectGallery />
       <div class="content-row">
